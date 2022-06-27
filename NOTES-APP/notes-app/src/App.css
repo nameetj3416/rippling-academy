@@ -1,0 +1,52 @@
+form{
+    display: flex;
+    position:relative;
+    width:80%;
+    margin:32px auto 50px auto;
+    background:white;
+    padding:7px;
+    border-radius: 7px;
+    box-shadow:0 1px 7px rgb(128, 128, 128);
+}
+body{
+    background-color: #ededed;
+}
+form input{
+    width:95%;
+    border:none;
+    padding:4px 10px;
+    margin-bottom: 20px;
+    outline:none;
+    font-size:1rem;
+    resize:none;
+}
+.note{
+    width:30%;
+    border-radius: 7px;
+    box-shadow: 7px;
+    box-shadow:0 1px 7px rgb(128, 128, 128);
+    padding-left: 10px;
+    padding-right: 10px;
+    /* margin:16px; */
+    float:left;
+}
+.note h2{
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+    /* white-space: pre-wrap; */
+    word-wrap: break-word;
+}
+.note p{
+    font-size: 1rem;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.inputBox{
+    display: flex;
+}
+img{
+    width:7%;
+    float:right;
+}
