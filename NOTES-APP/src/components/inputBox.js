@@ -13,6 +13,8 @@ function InputBox({onAdd}) {
   const [note,setNote]=useState({
     notebody:'',
     color:"white",
+    id:0,
+    pinStatus:false,
   });
   const handleChange=(e)=>{
     // console.log(e.target);
@@ -38,6 +40,8 @@ function InputBox({onAdd}) {
     setNote({
       notebody:"",
       color:"white",
+      id:note.id+1,
+      pinStatus:false,
     })
     e.preventDefault();
   }

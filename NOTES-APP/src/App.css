@@ -27,7 +27,7 @@ form input{
     box-shadow:0 1px 7px rgb(128, 128, 128);
     padding-left: 10px;
     padding-right: 10px;
-    /* margin:16px; */
+    margin:16px;
     float:left;
 }
 .note h2{
@@ -49,4 +49,8 @@ form input{
 img{
     width:7%;
     float:right;
+}
+.divided{
+    display: flex;
+    flex-direction: column;
 }

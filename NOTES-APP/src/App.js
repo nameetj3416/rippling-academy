@@ -3,41 +3,48 @@ import Header from './components/Header';
 import InputBox from './components/inputBox';
 import Note from './components/note';
 import { useState } from 'react';
-import Masony from "react-masonry-component";
 
-const masonryOptions = {
-  fitWidth: true,
-  columnWidth: 300,
-  gutter: 30,
-  itemSelector: ".note-item",
-};
 const App=()=>{
   const [notes,setNotes]=useState([]);
+  const [pining, setPining] = useState(0);
   const addNote=(freshNote)=>{
     setNotes(initialValue=>{
       return [...initialValue,freshNote];
     });
   }
-  const isPinned=()=>{
-    console.log('entered here');
+  const changePin = (id) => {
+
+    let countPin=0;
     for(let i=0;i<notes.length;i+=1){
-      if(notes[i].isPinned){
-        return true;
+      if(notes[i].id===id){
+        notes[i].pinStatus=!notes[i].pinStatus;
+        if(notes[i].pinStatus){
+          setPining(pining+1);
+        }
+        else{
+          setPining(pining-1);
+        }
       }
+      countPin+=notes[i].pinStatus;
+      console.log(notes[i].pinStatus);
     }
-    return false;
-  }
-  if(!isPinned()){
+    console.log('nums of pins ',countPin);
+  } 
+
+  if(!pining){
     return (
       <div className="App">
           <Header />
           <InputBox onAdd={addNote}/>
-          {notes.map((note,index) => (
+          {notes.map((note) => (
               <div className={`note-item`}>
                 <Note 
-                key={index}
+                key={note.id}
+                id={note.id}
                 notebody={note.notebody} 
                 color={note.color}
+                changePin = {changePin}
+                pinStatus={false}
               />
             </div>
           ))}
@@ -49,30 +56,46 @@ const App=()=>{
       <div className="App">
           <Header />
           <InputBox onAdd={addNote}/>
-          <p>Pinned Notes</p>
-          {notes.map(function(note,index){
-              if(note.pinned===true){
-                return <div className={`note-item`}>
-                  <Note 
-                    key={index}
-                    notebody={note.notebody} 
-                    color={note.color}
-                  />
-                </div>
-              }   
-          })}
-          <p>Other Notes</p>
-          {notes.map(function(note,index){
-              if(note.pinned===false){
-                return <div className={`note-item`}>
-                  <Note 
-                    key={index}
-                    notebody={note.notebody} 
-                    color={note.color}
-                  />
-                </div>
-              }   
-          })}
+          <div className='divided'>
+            <div className='pinned'>
+              <p><b>Pinned Notes</b></p>
+              {notes.map(function(note){
+                  if(note.pinStatus===true){
+                    return <div className={`note-item`}>
+                      <Note 
+                        key={note.id}
+                        id={note.id}
+                        notebody={note.notebody} 
+                        color={note.color}
+                        changePin = {changePin}
+                        pinStatus={true}
+                      />
+                    </div>
+                  }   
+              })}
+            </div>
+            <div className='unpinned'>
+              <p><b>Other Notes</b></p>
+              {notes.map(function(note){
+                  if(note.pinStatus===false){
+                    return <div className={`note-item`}>
+                      <Note 
+                        key={note.id}
+                        id={note.id}
+                        notebody={note.notebody} 
+                        color={note.color}
+                        changePin = {changePin}
+                        pinStatus={false}
+                      />
+                    </div>
+                  }   
+              })}
+
+            </div>
+
+          </div>
+          
+          
       </div>
     );
   }
