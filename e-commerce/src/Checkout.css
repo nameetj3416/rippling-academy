@@ -1,0 +1,30 @@
+.checkout__optionOne{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;    
+}
+.checkout__lineOne{
+    font-weight: 600;
+    font-size: 20px;
+    padding-bottom: 5px;
+    align-items: center;
+}
+
+.checkout__lineTwo{
+    font-size: 12px;
+    align-items: center;
+}
+.checkout__products{
+    display: flex;
+    flex-direction: column;
+    
+}
+.checkout__title{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.checkout__optionTwo{
+    display: flex;
+    justify-content: space-evenly;
+}
