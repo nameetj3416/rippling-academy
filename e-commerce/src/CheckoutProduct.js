@@ -4,6 +4,15 @@ import { useStateValue } from './StateProvider'
 
 function CheckoutProduct({id,title,image,rating,description,price}) {
     const [{cart},dispatch]=useStateValue();
+    const productFrequency=(product_id)=>{
+        let count=0;
+        for(let i=0;i<cart.length;i++){
+            if(cart[i].id===product_id){
+                count++;
+            }
+        }
+        return count;
+    }
     const addToCart=()=>{
         dispatch({
             type:'ADD_TO_CART',
@@ -27,7 +36,7 @@ function CheckoutProduct({id,title,image,rating,description,price}) {
 
   return (
     <div className='checkoutProduct'>
-        <img src={image} className='checkoutProduct_image'/>
+        <img src={image} className='checkoutProduct__image'/>
         <div className='checkoutProduct__info'>
             <p className='checkoutProduct__title'>{title}</p>
             <p className='checkoutProduct__description'>{description}</p>
@@ -40,7 +49,7 @@ function CheckoutProduct({id,title,image,rating,description,price}) {
             </div>
             <div className='checkoutProduct__counter'>
                 <button onClick={addToCart} className='checkoutProduct__increment'>+</button>
-                <p className='checkoutProduct__increment'>{cart.length}</p>
+                <p className='checkoutProduct__count'>{productFrequency(id)}</p>
                 <button onClick={removeFromCart} className='checkoutProduct__decrement'>-</button>
             </div>
 

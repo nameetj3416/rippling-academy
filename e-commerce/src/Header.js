@@ -3,6 +3,7 @@ import './Header.css'
 import {Link} from 'react-router-dom'
 import SearchIcon from '@material-ui/icons/Search';
 import LocationOnIcon from '@material-ui/icons/LocationOnOutlined';
+import FilterListSharpIcon from '@material-ui/icons/FilterListSharp';
 import { CardTravel, LocationOnOutlined } from '@material-ui/icons';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import { useStateValue } from './StateProvider';
@@ -11,10 +12,9 @@ import { useStateValue } from './StateProvider';
 */ }
 function Header() {
     const [{cart},dispatch]=useStateValue();
-    const handleLocation=(event)=>{
-        let pinCode=prompt('Enter the Pincode');
+    const handleFilter=()=>{
+
     }
-    let location;
   return (
     <nav className='header'>
         {/* logo */}
@@ -23,8 +23,9 @@ function Header() {
         </Link>
         
         {/* address selector */}
-        <div className='header__location'>
-            <LocationOnOutlined className='header__locationIcon' onClick={handleLocation}/>
+        <div className='header__filter'>
+            <p>Filter</p>
+            <FilterListSharpIcon className='header__filterIcon' onClick={handleFilter}/>
         </div>
         
 

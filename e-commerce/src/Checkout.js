@@ -5,6 +5,15 @@ import CheckoutProduct from './CheckoutProduct';
 import Subtotal from './Subtotal';
 function Checkout() {
     const [{cart},dispatch]=useStateValue();
+    let uniqueIDs=new Set();
+    let uniqueCart=[];
+    for(let i=0;i<cart.length;i++){
+        if(!uniqueIDs.has(cart[i].id)){
+            uniqueCart.push(cart[i]);
+            uniqueIDs.add(cart[i].id);
+        }
+    }
+    console.log(cart.length,uniqueCart.length);
     return (
         <div className='checkout'>
             {cart.length===0 ? (
@@ -15,8 +24,12 @@ function Checkout() {
                 </div>
             ):(
                 <div className='checkout__optionTwo'>
-                    <h2>Your Shopping Cart</h2>
-                    {cart.map(item=>(
+                    
+                    <div className='checkout__left'>
+                        <h2 className='checkout__title'>Your Shopping Cart</h2>
+                        <hr/>
+                        <div className='checkout__products'></div>
+                        {uniqueCart.map(item=>(
                             <CheckoutProduct
                                 key={item.id}
                                 id={item.id}
@@ -26,17 +39,11 @@ function Checkout() {
                                 description={item.description}
                                 price={item.price}
                             />
-                        ))}
-                    {/* {cart.map((item)=>(
-                        <p>{item.title}</p>
-                    ))} */}
-                    {/* <div className='checkout__left'>
-                        
-                        
+                        ))}  
                     </div>
                     <div className='checkout__right'>
                         <Subtotal/>   
-                    </div> */}
+                    </div>
                 </div>
             )}
         </div>

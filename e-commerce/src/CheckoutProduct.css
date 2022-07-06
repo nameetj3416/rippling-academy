@@ -5,7 +5,7 @@
 }
 
 .checkoutProduct__image{
-    object-fit: contain;
+    /* object-fit: contain; */
     width: 180px;
     height: 180px;
 }
@@ -22,4 +22,11 @@
 .checkoutProduct__title{
     font-size: 18px;
     font-weight: 800;
+}
+.checkoutProduct__counter{
+    display: flex;
+}
+.checkoutProduct__count{
+    margin-left: 5px;
+    margin-right: 5px;
 }
