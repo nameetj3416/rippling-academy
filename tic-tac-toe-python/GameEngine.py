@@ -10,7 +10,7 @@ class GameEngine:
         self.player_x=Player('X')
         self.player_o=Player('O')
     
-    def inputValidator(inputString):
+    def inputValidator(self,inputString):
         inputRegex = re.compile(r'^\d,\d$')
         matchedInput=inputRegex.search(inputString)
         
