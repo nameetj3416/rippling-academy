@@ -10,48 +10,48 @@ class GameEngine:
         self.player_x=Player('X')
         self.player_o=Player('O')
     
-    def inputValidator(self,inputString):
-        inputRegex = re.compile(r'^\d,\d$')
-        matchedInput=inputRegex.search(inputString)
+    def input_validator(self,input_string):
+        input_regex = re.compile(r'^\d,\d$')
+        matched_input=input_regex.search(input_string)
         
-        if matchedInput==None:
+        if matched_input==None:
             return False
         return True
     
-    def inputCoordinates(self):
+    def input_coordinates(self):
         print("{}'s Turn. Please enter the coordinates where you want to place your symbol.".format(self.symbol[self.turn]) )
-        inputString=str(input())
-        while self.inputValidator(inputString)==False:
+        input_string=str(input())
+        while self.input_validator(input_string)==False:
             print('Incorrect Coordinates Format!. Please make sure you follow {x,y} format')
-            inputString=str(input())
+            input_string=str(input())
         
-        [x,y]=inputString.split(',')
+        [x,y]=input_string.split(',')
         [x,y]=[int(x),int(y)]
 
         return [x,y]
 
-    def switchTurn(self):
+    def switch_turn(self):
         self.turn=(self.turn+1)%2
 
     def play(self):
         print('Lets Begin The Game!')
-        self.game.printGameBoard()
+        self.game.print_game_board()
 
-        while(self.game.checkVictory()[1]==3):
-            [x,y]=self.inputCoordinates()
+        while(self.game.check_victory()[1]==3):
+            [x,y]=self.input_coordinates()
             
             if self.turn==0:
-                moveResult=self.player_x.move(self.game,x,y)
+                move_result=self.player_x.move(self.game,x,y)
             else:
-                moveResult=self.player_o.move(self.game,x,y)
+                move_result=self.player_o.move(self.game,x,y)
 
-            if moveResult[1]<=1:
-                print(moveResult[0])
+            if move_result[1]<=1:
+                print(move_result[0])
                 continue
             else:
-                self.game.printGameBoard()
-                self.switchTurn()
+                self.game.print_game_board()
+                self.switch_turn()
         
-        gameResult=self.game.checkVictory()
+        game_result=self.game.check_victory()
 
-        print(gameResult[0])
+        print(game_result[0])
