@@ -14,10 +14,6 @@ class Item(Document):
     availability = BooleanField(default=True)
     availability_times = ListField(StringField(max_length=50))
 
-    meta={
-        "indexes": ["restaurant_id"]
-    }
-
 
 
 

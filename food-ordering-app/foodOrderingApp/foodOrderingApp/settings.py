@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import mongoengine
 import urllib.parse
+from typing import Dict
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -83,6 +84,11 @@ mongoengine.connect(host="mongodb+srv://{}:{}@ripplingcluster.vxfbqlh.mongodb.ne
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+DATABASES: Dict[str, Dict[str, str]] = {
+    "default": {
+        "ENGINE": "django.db.backends.dummy",
+    },
+}
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',

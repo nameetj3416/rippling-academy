@@ -1,11 +1,21 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
+from rest_framework.decorators import api_view
+from .serializers import ItemSerializer
+from .models import Item
+from rest_framework.response import Response
 
 
 # Create your views here.
-def home(request):
-    return HttpResponse("This is the User's Homepage")
+@api_view(['GET'])
+def list_all_items(request):
+    # get details about a particular restaurant
+    items = Item.objects.all()
+    serializer = ItemSerializer(items, many=True)
+    return Response(serializer.data)
 
-def apiOverview(request):
-    return JsonResponse("API BASE POINT", safe=False)
+
+@api_view(['GET'])
+def filter_items(request, filter_params):
+    pass
 
